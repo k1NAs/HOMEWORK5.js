@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		<html lang="en">
+
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Document</title>
+		</head>
+
+<body>
+
+</body>
+
+</html>
+</title>
+</head>
+
+<body>
+	<script>
+
+		class Worker {
+			#experience = 1.2;
+
+			constructor(fullName, dayRate, workingDays) {
+				this.fullName = fullName;
+				this.dayRate = dayRate;
+				this.workingDays = workingDays;
+			}
+
+			get setExp() { return this.#experience }
+			set setExp(newExp) {
+				if (newExp <= 0) {
+					this.#experience = 0.5
+				} else {
+					this.#experience = newExp
+				}
+			}
+
+			get salary() {
+				return this.dayRate * this.workingDays;
+			}
+
+			showSalary() {
+				console.log(this.salary);
+			}
+
+			showExp() {
+				return this.#experience;
+			}
+
+			showSalaryWithExperience() {
+				let salaryWiyhExp = this.salary * this.#experience;
+				console.log(salaryWiyhExp);
+			}
+
+		}
+
+		let worker1 = new Worker("John Johnson", 20, 23);
+
+		console.log(worker1.fullName);
+		worker1.showSalary();
+		console.log("New experience: " + worker1.showExp());
+		worker1.showSalaryWithExperience();
+		worker1.setExp = 1.5;
+		console.log("New experience: " + worker1.showExp());
+		worker1.showSalaryWithExperience();
+
+
+		let worker2 = new Worker("Tom Tomson", 48, 22);
+		worker2.setExp = 1.5;
+
+
+		let worker3 = new Worker("Andy Ander", 29, 23);
+		worker3.setExp = 1.5;
+
+		const workers = [
+			worker1,
+			worker2,
+			worker3,
+			worker2,
+			worker1
+		];
+
+		const nameInput = document.createElement('input');
+		nameInput.placeholder = 'full name';
+		const dayRateInput = document.createElement('input');
+		dayRateInput.placeholder = 'day rate';
+		const workingDaysInput = document.createElement('input');
+		workingDaysInput.placeholder = 'working days';
+		const expInput = document.createElement('input');
+		expInput.placeholder = 'exp';
+
+		const addButton = document.createElement('button');
+		addButton.innerHTML = 'add worker';
+		addButton.addEventListener('click', () => {
+			if (!nameInput.value) return;
+			if (!dayRateInput.value) return;
+			if (!workingDaysInput.value) return;
+			if (!expInput.value) return;
+
+			const newWorker = new Worker(nameInput.value, +dayRateInput.value, +workingDaysInput.value);
+			newWorker.setExp = +expInput.value;
+			workers.push(newWorker);
+
+			console.clear();
+			workers.sort((w1, w2) => {
+				return w1.salary - w2.salary
+			}).forEach((worker, i) => {
+				console.log((i + 1) + ' ' + worker.fullName + ', salary: ', worker.salary);
+			});
+		});
+
+		document.body.append(nameInput);
+		document.body.append(dayRateInput);
+		document.body.append(workingDaysInput);
+		document.body.append(expInput);
+		document.body.append(addButton);
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 3</title>
+</head>
+
+<body>
+
+
+	<script>
+
+		class Person {
+			constructor(name, surname) {
+				this.name = name;
+				this.surname = surname;
+			}
+			showFullName() {
+				console.log(this.name + " " + this.surname);
+			}
+		}
+
+
+
+		class Student extends Person {
+			constructor(name, surname, year, midleName) {
+				super(name, surname);
+				this.midleName = midleName;
+				this.year = year;
+			}
+			showFullName(midleName) {
+
+				console.log(`${this.name} ${this.surname} ${midleName}`)
+			}
+			showCourse() {
+				let date = new Date();
+				let currentYear = date.getFullYear();
+				let currentCourse = currentYear - this.year;
+				return currentCourse;
+
+			}
+		}
+
+
+		const stud1 = new Student("Petro", "Petrenko", 2015);
+		console.log(stud1.showFullName("Petrovych"));
+		console.log("Current course: " + stud1.showCourse());
+
+
+
+
+
+
+
+
+	</script>
+
+</body>
+
+</html>
