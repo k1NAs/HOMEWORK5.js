@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		class GeometricFigure {
+			getArea() { console.log('implement me!!!') }
+
+			toString() {
+				return Object.getPrototypeOf(this).constructor.name;
+			}
+		}
+
+		class Triangle extends GeometricFigure {
+			a = 0;
+			b = 0;
+			c = 0;
+
+			constructor(a, b) {
+				super();
+				this.a = a;
+				this.b = b;
+				this.c = b;
+			}
+
+			getArea() {
+				let p = (this.a + this.b + this.c) / 2;
+				return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+			}
+		}
+
+		class Square extends GeometricFigure {
+			size = 0;
+			constructor(size) {
+				super();
+				this.size = size;
+			}
+			getArea() {
+				return this.size * this.size;
+			}
+		}
+
+		class Circle extends GeometricFigure {
+			radius = 0;
+			constructor(radius) {
+				super();
+				this.radius = radius;
+			}
+			getArea() {
+				return Math.PI * Math.pow(this.radius, 2);
+			}
+		}
+
+		function handleFigures(figures) {
+			const result = figures.reduce((acc, item, i) => {
+				if (item instanceof GeometricFigure) {
+					return {
+						...acc,
+						[i]: 'Geometnric figure: ' + item.toString() + ' - area: ' + item.getArea(),
+						total: acc.total + item.getArea()
+					}
+				} else {
+					return acc;
+				}
+			}, { total: 0 });
+
+			Object.entries(result).forEach((pair) => {
+				const [key, value] = pair;
+				console.log('key:', key, 'value:', value);
+			});
+		}
+
+		const figures = [new Triangle(4, 5), new Square(7), new Circle(5), new Circle(15)];
+		handleFigures(figures);
+	</script>
+</body>
+
+</html>
